@@ -1,0 +1,51 @@
+String choco;
+int cant,obs;
+double pre,impC,impD,impP;
+void actionPerformedBtnProcesar(ActionEvent e){
+	leerDatos();
+	obtenerPrecio();
+	calcularImporteCompra();
+	calcularImporteDescuento();
+	calcularImportePagar();
+	RegaloCaramelos();
+	mostrarResultado();
+}
+
+void leerDatos(){
+	choco =cboTipoChoco.getSelectedItem().toString;
+	cant  =Integer.parseInt(txtCantidad.getText());
+}
+void obtenerPrecio(){
+	if (choco=="Primor"){pre=8.5;}
+	else if (choco=="Dulzura"){pre=10.0;}
+	else if (choco=="Tentación"){pre=7.0}
+	else{pre=12.5}
+}
+void calcularImporteCompra(){
+	impC=pre*cant;
+
+}
+void calcularImporteDescuento(){
+	if(cant<5){impD=impC*0.004}
+	else if (cant>=5 && cant <10){impD=impC*0.065}
+	else if (cant>=10 && cant <15){impD=impC*0.009}
+	else {impD=impC*0.115}
+}
+void calcularImportePagar(){
+	impP=impC-impD;
+}
+void RegaloCaramelos(){
+	if (impP>=250){obs=cant*3}
+	else{obs=cant*2}
+}
+void mostrarResultado(){
+	imprimir("importe compra     : " + impC)
+	imprimir("importe descuento  : " + impD)
+	imprimir("importe pagar      : " + impP)
+	imprimir("caramelos          : " + obs)
+}
+
+
+
+
+

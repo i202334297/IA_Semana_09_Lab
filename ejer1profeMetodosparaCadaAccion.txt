@@ -1,0 +1,36 @@
+
+String pro;
+int cant;
+double pre,impC,impP,impD;
+void actionPerformedBtnProcesar(ActionEvent e){ //de manera ordenada
+	leerDatos();
+	obtenerPrecio();
+	calcularImporteCompra();
+	calcularImportedescuento();
+	calcularImportePagar();
+}
+void leerDatos(){
+	
+	pro  =cboProducto.getSelectedItem().toString();
+	cant =	Integer.parseInt(txtCantidad.getText());	
+}
+void obtenerPrecio(){
+	if(pro=="P0"){pre=15.0;}
+	else if (pro=="P1"){pre=17.5;}
+	else{pre=20.0;}
+}
+void calcularImporteCompra(){
+	impC=pre*cant;
+}
+void calcularImportedescuento(){
+	if(cant>10){impD=impC*0.15;}
+	else{impD=impC*0.07}
+}
+void calcularImportePagar(){
+	impP=impC-impD;
+}
+void mostrarResultado(){
+	imprimir("importe compra     : " + impC)
+	imprimir("importe descuento  : " + impD)
+	imprimir("importe pagar      : " + impP)
+}

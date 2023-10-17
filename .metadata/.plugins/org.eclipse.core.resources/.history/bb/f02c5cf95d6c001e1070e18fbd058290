@@ -1,0 +1,74 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Padre extends JFrame implements ActionListener{
+
+	private JPanel contentPane;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmHijo;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Padre frame = new Padre();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Padre() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnNewMenu = new JMenu("Inicio");
+		menuBar.add(mnNewMenu);
+		
+		mntmHijo = new JMenuItem("Mnu Hijo");
+		mntmHijo.addActionListener(this);
+		mnNewMenu.add(mntmHijo);
+		
+		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+	}
+	public void ActionPerformed(ActionEvent arg0){
+		if (arg0.getSource()==mntmHijo){
+			actionPerformedMntmHijo(arg0);
+		}
+	}
+	protected void actionPerformedMntmHijo(ActionEvent arg0){
+		DlgHijo Ph =new DlgHijo();
+		Ph.setLocationRelativeTo(this);
+		Ph.setVisible(true);
+				
+		
+	}
+}
